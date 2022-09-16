@@ -28,9 +28,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let myfolder of myfolders">
-      <td>{{ myfolder.name }}</td>
+      <td><a (click)="getFolder({{myfolder.id}})">{{ myfolder.name }}</a></td>
       <td>
-        <button type="button" class="btn btn-success" (change)="renameFolder({{myfolder.id}})">Rename Folder</button><span class="download">{{message}}</span>
         <button type="button" class="btn btn-success" (change)="deleteFolder({{myfolder.id}})">Delete Folder</button><span class="delete">{{message}}</span>
       </td>
     </tr>

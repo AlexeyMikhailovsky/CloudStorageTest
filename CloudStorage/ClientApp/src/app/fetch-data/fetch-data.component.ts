@@ -81,13 +81,15 @@ export class FetchDataComponent implements OnInit {
     )
   }
 
-  renameFolder(route: number, name: string) {
-    const baseUrl = 'http://localhost:44476/file/renameFolder';
-    this.http.delete(baseUrl + route + name).subscribe(
-      (response: any) => {
-        console.log(response);
-      }
-    )
+  getFolder(route: number) {
+    const baseUrl = 'http://localhost:44476/file/getfolder';
+    this.http.get<MyFolder[]>(baseUrl + route).subscribe(result => {
+      this.myfolders = result;
+    }, error => console.error(error));
+
+    this.http.get<MyFile[]>(baseUrl + '/getFilesFromFolder/' + route).subscribe(result => {
+      this.myfiles = result;
+    }, error => console.error(error));
   }
 }
 
