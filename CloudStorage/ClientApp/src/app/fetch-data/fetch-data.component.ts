@@ -10,10 +10,14 @@ export class FetchDataComponent implements OnInit {
   public message!: string;
   @Output() public onUploadFinished = new EventEmitter();
   public myfiles: MyFile[] = [];
+  public myfolders: MyFolder[] = [];
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<MyFile[]>(baseUrl + 'file/getlist').subscribe(result => {
       this.myfiles = result;
+    }, error => console.error(error));
+    http.get<MyFolder[]>(baseUrl + 'file/getfolder').subscribe(result => {
+      this.myfolders = result;
     }, error => console.error(error));
   }
 
@@ -42,7 +46,34 @@ export class FetchDataComponent implements OnInit {
       });
   }
 
+  downloadFile(route: number, filename: any): void{
+    const baseUrl = 'http://localhost:44476/file/download';
+    this.http.get(baseUrl + route, { responseType: 'blob' as 'json' }).subscribe(
+      (response: any) => {
+        let dataType = response.type;
+        let binaryData = [];
+        binaryData.push(response);
+        let downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: dataType }));
+        if (filename)
+          downloadLink.setAttribute('download', filename);
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+      }
+    )
+  }
 
+  deleteFile() {
+  
+  }
+
+  deleteFolder() {
+
+  }
+
+  renameFolder() {
+
+  }
 }
 
 interface MyFile {
@@ -54,4 +85,10 @@ interface MyFile {
   uploadDate: string;
   type: string;
   size: string;
+}
+
+interface MyFolder {
+  id: number;
+  idParent: number;
+  name: string;
 }

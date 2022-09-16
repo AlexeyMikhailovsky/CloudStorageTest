@@ -58,7 +58,7 @@
       <td>{{ myfile.type }}</td>
       <td>{{ myfile.size }}</td>
       <td>
-        <button type="button" class="btn btn-success" (change)="downloadFile({{myfile.id}})">Download File</button><span class="download">{{message}}</span>
+        <button type="button" class="btn btn-success" (change)="downloadFile({{myfile.id}},{{myfile.name}})">Download File</button><span class="download">{{message}}</span>
         <button type="button" class="btn btn-success" (change)="deleteFile({{myfile.id}})">Delete File</button><span class="delete">{{message}}</span>
       </td>
     </tr>
