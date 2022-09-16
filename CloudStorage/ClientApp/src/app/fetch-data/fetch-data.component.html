@@ -1,0 +1,48 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!forecasts"><em>Loading...</em></p>
+
+<div class="row" style="margin-bottom:15px;">
+  <div class="col-md-3">
+    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+  </div>
+  <div class="col-md-4">
+    <span class="upload" *ngIf="progress > 0">
+      {{progress}}%
+    </span>
+    <span class="upload" *ngIf="message">
+      {{message}}
+    </span>
+  </div>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="myfiles">
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Name</th>
+      <th>Creation Date</th>
+      <th>Upload Date</th>
+      <th>Type</th>
+      <th>Size</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let myfile of myfiles">
+      <td>{{ myfile.location }}</td>
+      <td>{{ myfile.name }}</td>
+      <td>{{ myfile.creationDate }}</td>
+      <td>{{ myfile.uploadDate }}</td>
+      <td>{{ myfile.type }}</td>
+      <td>{{ myfile.size }}</td>
+      <td>
+        <button type="button" class="btn btn-success" (change)="downloadFile({{myfile.id}})">Download File</button><span class="download">{{message}}</span>
+        <button type="button" class="btn btn-success" (change)="deleteFile({{myfile.id}})">Delete File</button><span class="delete">{{message}}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

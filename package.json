@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
+    "@types/eslint": "^8.4.6",
+    "@types/estree": "^1.0.0",
+    "@types/mime": "^3.0.1",
+    "tslib": "^2.4.0"
+  }
+}
