@@ -64,7 +64,7 @@ namespace CloudStorage.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("AddDepartment")]
+        [Route("AddFolder")]
         public async Task<IActionResult> AddFolder([FromQuery] int id, [FromQuery] string name)
         {
             try

@@ -63,16 +63,31 @@ export class FetchDataComponent implements OnInit {
     )
   }
 
-  deleteFile() {
-  
+  deleteFile(route: number) {
+    const baseUrl = 'http://localhost:44476/file/deleteFile';
+    this.http.delete(baseUrl + route).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    )
   }
 
-  deleteFolder() {
-
+  deleteFolder(route: number) {
+    const baseUrl = 'http://localhost:44476/file/deletefolder';
+    this.http.delete(baseUrl + route).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    )
   }
 
-  renameFolder() {
-
+  renameFolder(route: number, name: string) {
+    const baseUrl = 'http://localhost:44476/file/renameFolder';
+    this.http.delete(baseUrl + route + name).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    )
   }
 }
 
